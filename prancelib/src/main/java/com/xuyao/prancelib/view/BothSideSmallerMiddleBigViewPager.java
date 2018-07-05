@@ -51,6 +51,9 @@ public class BothSideSmallerMiddleBigViewPager extends ViewPager {
         this.bothSideWidthPading = bothSideWidthPading;
     }
 
+    /**
+     * 实现动画的对象接口
+     */
     public final static float MINSC=0.5f;
     class MyPagerTransfer implements ViewPager.PageTransformer{
 
