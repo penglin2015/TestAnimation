@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".TestFoucusActivity">
+
+    <EditText
+        android:id="@+id/ed_0"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:hint="测试输入1" />
+
+    <EditText
+        android:id="@+id/ed_1"
+        android:layout_width="match_parent"
+        android:nextFocusLeft="@id/ed_0"
+        android:nextFocusUp="@id/ed_0"
+        android:layout_height="wrap_content"
+        android:hint="测试输入1" />
+
+
+    <EditText
+        android:id="@+id/ed_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nextFocusLeft="@id/ed_0"
+        android:nextFocusUp="@id/ed_0"
+        android:hint="测试输入2" />
+
+    <EditText
+        android:id="@+id/ed_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nextFocusLeft="@id/ed_0"
+        android:nextFocusUp="@id/ed_0"
+        android:hint="测试输入3" />
+
+    <Button
+        android:id="@+id/clickClearFoucusButt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试失去焦点" />
+</LinearLayout>

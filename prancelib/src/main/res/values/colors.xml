@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="iconBarPressedColor">#d31a1a</color>
+    <color name="iconBarNormalColor">#272636</color>
+    <color name="translation">#00272636</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="searchBacKColor">#BFBFBF</color>
+
+    <color name="searchButtonSolidColor">#999999</color>
+
+    <color name="red">#ff0000</color>
+    <color name="light_grey">#eeeeee</color>
+    <color name="cartButtonNormalColor">#026767</color>
+    <color name="black_light">#2e2e2e</color>
+    <color name="gray_white">#55ffffff</color>
+    <color name="gray_black">#55000000</color>
+    <color name="gray">#DEDEDE</color>
+    <color name="light">#c6c4c4</color>
+    <color name="gray_gray_light">#efefef</color>
+
+    <color name="leftTagTextColor">#8e8e8d</color>
+    <color name="textDefaultColor">#596964</color>
+    <color name="gray_blue">#87CEFA</color>
+
+    <color name="cyan">#00FFFF</color>
+    <color name="darkCyan">#008B8B</color>
+    <color name="reallyCyan">#2BC4C4</color>
+
+    <color name="gray_cyan">#8FE3E3</color>
+
+    <color name="blue">#0000ff</color>
+    <color name="blue_light">#0099ff</color>
+
+    <color name="actionBarTextColor">#3399cc</color>
+
+    <color name="lightlightblack">#999999</color>
+
+    <color name="dedede">#dedede</color>
+    <color name="c3c3c3">#c3c3c3</color>
+
+    <color name="c999">#999</color>
+</resources>

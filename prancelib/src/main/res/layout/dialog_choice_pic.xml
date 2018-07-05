@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:background="@color/gray"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/takePhotoFromCamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/gray_blue"
+        android:padding="8dp"
+        android:text="拍照" />
+    <TextView
+        android:id="@+id/takePhotoFromFileBrower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:textColor="@color/white"
+        android:background="@color/gray_blue"
+        android:text="从相册中选择" />
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:textColor="@color/white"
+        android:background="@color/gray_black"
+        android:text="取消" />
+</LinearLayout>

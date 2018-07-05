@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.xgr.easypay:EasyPay-1.0.2">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EasyPay-1.0.2.aar/d95a5d9b5b081b863be3edd829c326f5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EasyPay-1.0.2.aar/d95a5d9b5b081b863be3edd829c326f5/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EasyPay-1.0.2.aar/d95a5d9b5b081b863be3edd829c326f5/jars/libs/libammsdk.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EasyPay-1.0.2.aar/d95a5d9b5b081b863be3edd829c326f5/jars/libs/UPPayAssistEx.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EasyPay-1.0.2.aar/d95a5d9b5b081b863be3edd829c326f5/jars/libs/alipaySdk-20160825.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EasyPay-1.0.2.aar/d95a5d9b5b081b863be3edd829c326f5/jars/libs/UPPayPluginExPro.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.xgr.easypay/EasyPay/1.0.2/a0446c814614cc47b40ce99b2e2239f095dde9b1/EasyPay-1.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

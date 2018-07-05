@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestRecyclerForPositionActivity">
+
+    <TextView
+        android:id="@+id/showPositionName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/reallyCyan"
+        android:gravity="center"
+        android:text="当前正处于哪个下标"
+        android:textColor="@color/white" />
+
+    <com.xuyao.prancelib.view.BaseRecyclerView
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

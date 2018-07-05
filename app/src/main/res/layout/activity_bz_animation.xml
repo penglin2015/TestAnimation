@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#777"
+    android:layout_height="match_parent"
+    tools:context=".BzAnimationActivity">
+    <RelativeLayout
+        android:id="@+id/heartGroup"
+        android:layout_width="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/send"
+        android:layout_width="55dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="6dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@mipmap/icon_heart"
+        android:text=""/>
+</FrameLayout>

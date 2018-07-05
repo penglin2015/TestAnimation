@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.longsh:PhotoPicker-1.5.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/PhotoPicker-1.5.0.aar/613673c2dcc0f6f56f6478ded7114643/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/PhotoPicker-1.5.0.aar/613673c2dcc0f6f56f6478ded7114643/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.longsh/PhotoPicker/1.5.0/170e55b7c9b9938f7247674447180c84314b5060/PhotoPicker-1.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundImageView">
+        <attr name="type" format="enum">
+            <enum name="circle" value="1"/>
+            <enum name="round" value="2"/>
+        </attr>
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="flow" format="boolean"/>
+        <attr name="childSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+        </attr>
+        <attr name="childSpacingForLastRow" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+            <enum name="align" value="-65537"/>
+        </attr>
+        <attr name="rowSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536"/>
+        </attr>
+        <attr name="rtl" format="boolean"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="BothSideSmallerMiddleBigViewPager">
+        <attr name="clipPaddingValue" format="integer">0</attr>
+        <attr name="isSmallerBoth" format="boolean">false</attr>
+    </declare-styleable>
+</resources>

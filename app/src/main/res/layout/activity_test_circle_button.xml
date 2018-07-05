@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".TestCircleButtonActivity">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:background="@drawable/circle_big_shape"
+        android:padding="2dp"
+        android:layout_height="wrap_content">
+
+
+        <com.shouxindao.testanimation.views.CircleButtonLayout
+            android:id="@+id/testCbl"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/w1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                android:drawableTop="@mipmap/icon_bug2"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:padding="6dp"
+                android:text="文字1" />
+
+            <TextView
+                android:id="@+id/w2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                android:drawableTop="@mipmap/icon_bug2"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="文字2" />
+
+            <TextView
+                android:id="@+id/w3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                android:drawableTop="@mipmap/icon_bug2"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:padding="6dp"
+                android:text="文字3" />
+
+
+            <TextView
+                android:id="@+id/w4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                android:drawableTop="@mipmap/icon_bug2"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:padding="6dp"
+                android:text="文字4" />
+
+            <TextView
+                android:id="@+id/w5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                android:drawableTop="@mipmap/icon_bug2"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:padding="6dp"
+                android:text="文字5" />
+
+            <TextView
+                android:id="@+id/w6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                android:drawableTop="@mipmap/icon_bug2"
+                android:gravity="center"
+                android:padding="6dp"
+                android:layout_marginTop="4dp"
+                android:text="文字6" />
+
+            <TextView
+                android:id="@+id/w7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                android:drawableTop="@mipmap/icon_bug2"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:padding="6dp"
+                android:text="文字7" />
+
+        </com.shouxindao.testanimation.views.CircleButtonLayout>
+
+        <View
+            android:id="@+id/centerV"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_shape" />
+    </FrameLayout>
+</LinearLayout>

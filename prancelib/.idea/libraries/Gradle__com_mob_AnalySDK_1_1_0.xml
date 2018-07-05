@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mob:AnalySDK-1.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/AnalySDK-1.1.0.aar/80e2ba267be4896ebe23c8f747f2b55a/jars/libs/AnalySDK-1.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/AnalySDK-1.1.0.aar/80e2ba267be4896ebe23c8f747f2b55a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/AnalySDK-1.1.0.aar/80e2ba267be4896ebe23c8f747f2b55a/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

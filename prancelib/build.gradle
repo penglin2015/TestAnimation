@@ -1,0 +1,78 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+        }
+    }
+
+}
+
+ext {
+    supportVersion = '27.1.1'
+    butterknifeVersion = '8.8.1'
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api files('libs/afinal_0.5.1_bin.jar')
+    api files('libs/android-query-full.0.26.7.jar')
+    api files('libs/fastjson-1.2.33.jar')
+    api files('libs/gson-2.2.4.jar')
+    api files('libs/jsoup-1.8.1.jar')
+    api files('libs/ormlite-android-4.48.jar')
+    api files('libs/ormlite-core-4.48.jar')
+    //分包组件
+    api 'com.android.support:multidex:1.0.3'
+    //兼容动画组件
+    api 'com.nineoldandroids:library:2.4.0'
+    //图像加载组件
+    api 'com.github.bumptech.glide:glide:3.7.0'
+    //
+    api 'org.greenrobot:eventbus:3.1.0-RC'
+    api "com.android.support:appcompat-v7:${supportVersion}"
+    api "com.android.support:recyclerview-v7:${supportVersion}"
+    //控件注解组件
+    api "com.jakewharton:butterknife:${butterknifeVersion}"
+    api "com.jakewharton:butterknife-annotations:${butterknifeVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+    //banner组件
+    api 'com.youth.banner:banner:1.4.8'
+    api "com.android.support:support-v4:${supportVersion}"
+    //刷新组件
+    api 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+    //依赖下面的库
+    api 'com.google.vr:sdk-panowidget:1.80.0'
+
+
+    api 'com.xgr.easypay:EasyPay:1.0.2'
+
+    api 'com.longsh:PhotoPicker:1.5.0'//拍照选择图片工具
+
+    api 'com.yalantis:ucrop:2.2.0'
+
+/**
+ * 友盟统计的引用
+ */
+    api 'com.umeng.sdk:common:1.5.3'
+    api 'com.umeng.sdk:analytics:7.5.3'
+
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"//kotlin依赖
+
+}

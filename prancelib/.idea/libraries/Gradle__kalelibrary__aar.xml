@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: kalelibrary:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/kalelibrary.aar/1f9f1c41e1016b057f536365cd4fb1ca/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/kalelibrary.aar/1f9f1c41e1016b057f536365cd4fb1ca/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/gotoZhenTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="帧动画" />
+
+
+            <Button
+                android:id="@+id/gotoBetweenAnimationTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="补间动画" />
+
+            <Button
+                android:id="@+id/gotoPropertyAnimatiorTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="属性动画" />
+
+            <Button
+                android:id="@+id/gotoMix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="综合应用" />
+
+            <Button
+                android:id="@+id/gotoBz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="贝塞尔曲线" />
+
+            <Button
+                android:id="@+id/gotoBzAnimation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="贝塞尔曲线动画" />
+
+            <Button
+                android:id="@+id/gotoMoveAnimation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="仿动效动画" />
+
+            <Button
+                android:id="@+id/gotoTestFoucus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试失去焦点问题" />
+
+            <Button
+                android:id="@+id/gotoFlyBird"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="跳转飞翔的小鸟" />
+
+
+            <Button
+                android:id="@+id/gotoTestViewFlipper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="testViewFlipper" />
+
+
+            <Button
+                android:id="@+id/gotoTestCircleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="旋转按钮" />
+
+
+            <Button
+                android:id="@+id/gotoDynamicBz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="动态贝塞尔" />
+
+            <Button
+                android:id="@+id/gotoTestRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试RecyclerView定位" />
+
+            <Button
+                android:id="@+id/gotoTestKotlin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试Kotlin" />
+
+            <Button
+                android:id="@+id/gotoTestViewPager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试切换ViewPager" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

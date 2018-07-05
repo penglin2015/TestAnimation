@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="FullFitSystemWindowStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:fitsSystemWindows">true</item>-->
+        <item name="android:textColor">@color/gray_black</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColorHint">@color/dedede</item>
+        <!--<item name="android:colorAccent">@color/blue_light</item>-->
+    </style>
+
+    <style name="AppTheme" parent="@style/BaseAppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+
+    <style name="translateBottomUpStyle">
+        <item name="android:windowEnterAnimation">@anim/translate_enter_bottom_to_up_anim</item>
+        <item name="android:windowExitAnimation">@anim/translate_exit_up_to_bottom_anim</item>
+    </style>
+
+    <style name="translateRightToWindowStyle">
+        <item name="android:windowEnterAnimation">@anim/translate_right_to_inwindow</item>
+        <item name="android:windowExitAnimation">@anim/translate_inwindow_out_right</item>
+    </style>
+
+    <style name="PhotoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="actionBarTheme">@style/actionBarTheme</item>
+        <!--设置图片选择界面标题栏以及底栏颜色-->
+        <item name="colorPrimary">#38393E</item>
+        <!--设置图片选择界面状态栏颜色-->
+        <item name="colorPrimaryDark">#2F3034</item>
+        <item name="actionBarSize">56dip</item>
+    </style>
+    <style name="actionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="actionBarSize">56dip</item>
+    </style>
+</resources>
