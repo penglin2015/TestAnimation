@@ -59,20 +59,16 @@ dependencies {
     api 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
     //依赖下面的库
     api 'com.google.vr:sdk-panowidget:1.80.0'
-
-
     api 'com.xgr.easypay:EasyPay:1.0.2'
-
-    api 'com.longsh:PhotoPicker:1.5.0'//拍照选择图片工具
-
+    api 'com.longsh:PhotoPicker:1.5.0'
+    //拍照选择图片工具
     api 'com.yalantis:ucrop:2.2.0'
-
-/**
- * 友盟统计的引用
- */
+    /**
+     * 友盟统计的引用
+     */
     api 'com.umeng.sdk:common:1.5.3'
     api 'com.umeng.sdk:analytics:7.5.3'
-
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"//kotlin依赖
-
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //kotlin依赖
+    api "com.android.support:design:${supportVersion}"
 }
