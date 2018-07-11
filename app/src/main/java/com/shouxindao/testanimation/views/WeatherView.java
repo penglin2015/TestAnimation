@@ -46,6 +46,8 @@ public class WeatherView extends View {
     Paint p;
     int w, h;
 
+    CityBean cityBean;
+
     private void init() {
         p = new Paint();
         p.setColor(Color.RED);
@@ -56,16 +58,23 @@ public class WeatherView extends View {
         p.setStrokeWidth(5);
         w = ScreenUtils.getScreenWidth(getContext());
         h = ScreenUtils.getScreenHeight(getContext());
+        cityBean=new CityBean();
+
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        drawCity(canvas);
         drawRain(canvas);
         drawLightning(canvas);
         drawCloud(canvas);
         postInvalidate();
+    }
+
+    private void drawCity(Canvas canvas) {
+        cityBean.draw(canvas);
     }
 
     int maxCloudCount = 8;
@@ -325,6 +334,28 @@ public class WeatherView extends View {
                 }
             });
             xchange.start();
+        }
+    }
+
+
+    class CityBean implements Serializable{
+        Paint cityPaint;
+        Bitmap cityBitmap;
+        Matrix matrix;
+        public CityBean(){
+            cityPaint=new Paint(p);
+            cityBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.city);
+            matrix=new Matrix();
+            float bw=cityBitmap.getWidth();
+            float sc=w/bw;
+            matrix.preScale(sc,sc);
+            cityBitmap=Bitmap.createBitmap(cityBitmap,0,0,cityBitmap.getWidth(),cityBitmap.getHeight(),matrix,false);
+            matrix.setTranslate(0,h-cityBitmap.getHeight());
+
+        }
+
+        public void draw(Canvas canvas){
+            canvas.drawBitmap(cityBitmap,matrix,cityPaint);
         }
     }
 }
