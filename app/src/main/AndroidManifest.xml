@@ -35,7 +35,8 @@
         <activity android:name=".TestViewPagerActivity" />
         <activity android:name=".TestSlideMenuActivity" />
         <activity android:name=".UtilSlideMenuActivity" />
-        <activity android:name=".BasinAnimationActivity"></activity>
+        <activity android:name=".BasinAnimationActivity" />
+        <activity android:name=".WeatherAnimationActivity"></activity>
     </application>
 
 </manifest>
