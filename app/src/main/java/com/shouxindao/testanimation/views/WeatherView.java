@@ -68,60 +68,74 @@ public class WeatherView extends View {
         postInvalidate();
     }
 
-    int maxCloudCount=8;
-    List<CloudBean> cloudBeans=new ArrayList<>();
-    private void drawCloud(Canvas canvas) {
-        if(cloudBeans.size()<maxCloudCount){
-            for(int i=0;i<maxRainCont-cloudBeans.size();i++){
+    int maxCloudCount = 8;
+    List<CloudBean> cloudBeans = new ArrayList<>();
+
+    private void drawCloud(final Canvas canvas) {
+        if (cloudBeans.size() == 0) {
+            for (int i = 0; i < maxCloudCount; i++) {
+                final int finalI = i;
+                CloudBean cloudBean = new CloudBean(canvas){
+                    @Override
+                    public float resetX(Bitmap cloudBitmap) {
+                        return (float) w / (float) maxCloudCount* finalI;
+                    }
+                };
+                cloudBeans.add(cloudBean);
+            }
+        } else if(cloudBeans.size()<maxCloudCount){
+            for (int i = 0; i < maxCloudCount - cloudBeans.size(); i++) {
                 cloudBeans.add(new CloudBean(canvas));
             }
         }
 
-        List<CloudBean> isMove=new ArrayList<>();
-        for(CloudBean cloudBean:cloudBeans){
-            if(cloudBean.isOver){
+        List<CloudBean> isMove = new ArrayList<>();
+        for (CloudBean cloudBean : cloudBeans) {
+            if (cloudBean.isOver) {
                 isMove.add(cloudBean);
-            }else{
+            } else {
                 cloudBean.draw(canvas);
             }
         }
         cloudBeans.removeAll(isMove);
     }
 
-    int maxRainCont=100;
-    List<RainBean> rainBeans=new ArrayList<>();
+    int maxRainCont = 100;
+    List<RainBean> rainBeans = new ArrayList<>();
+
     private void drawRain(Canvas canvas) {
-        if(rainBeans.size()<maxRainCont){
-            for(int i=0;i<maxRainCont-rainBeans.size();i++){
+        if (rainBeans.size() < maxRainCont) {
+            for (int i = 0; i < maxRainCont - rainBeans.size(); i++) {
                 rainBeans.add(new RainBean());
             }
         }
 
 
-        List<RainBean> isMove=new ArrayList<>();
-        for(RainBean rainBean:rainBeans){
-            if(rainBean.isOver){
+        List<RainBean> isMove = new ArrayList<>();
+        for (RainBean rainBean : rainBeans) {
+            if (rainBean.isOver) {
                 isMove.add(rainBean);
-            }else{
+            } else {
                 rainBean.draw(canvas);
             }
         }
         rainBeans.removeAll(isMove);
     }
 
-    List<LightningBean> lightningBeans=new ArrayList<>();
-    int maxLightingCount=1;
+    List<LightningBean> lightningBeans = new ArrayList<>();
+    int maxLightingCount = 1;
+
     private void drawLightning(Canvas canvas) {
-        if(lightningBeans.size()<maxLightingCount){
-            for(int i=0;i<maxLightingCount-lightningBeans.size();i++){
+        if (lightningBeans.size() < maxLightingCount) {
+            for (int i = 0; i < maxLightingCount - lightningBeans.size(); i++) {
                 lightningBeans.add(new LightningBean());
             }
         }
-        List<LightningBean> isMove=new ArrayList<>();
-        for(LightningBean lightningBean:lightningBeans){
-            if(lightningBean.isOver){
+        List<LightningBean> isMove = new ArrayList<>();
+        for (LightningBean lightningBean : lightningBeans) {
+            if (lightningBean.isOver) {
                 isMove.add(lightningBean);
-            }else{
+            } else {
                 lightningBean.draw(canvas);
             }
         }
@@ -130,119 +144,124 @@ public class WeatherView extends View {
 
     class LightningBean implements Serializable {
         Paint lightningPaint;
-        boolean isOver=false;
+        boolean isOver = false;
+        int sec = 0;
 
 
         public LightningBean() {
-            lightningPaint=new Paint(p);
+            lightningPaint = new Paint(p);
             lightningPaint.setColor(Color.WHITE);
+            sec = (int) (RandomUti.getInstance().getRandom().nextDouble() * 3 + 4);
             start();
         }
 
 
-        public void draw(Canvas canvas){
-            lightningPaint.setAlpha((int) (changeAlpha*255f));
+        public void draw(Canvas canvas) {
+            lightningPaint.setAlpha((int) (changeAlpha * 255f));
             canvas.drawPaint(lightningPaint);
         }
 
-        float changeAlpha=0;
-        private void start(){
-            ValueAnimator valueAnimator=ValueAnimator.ofFloat(0f,0.7f,0.0f);
+        float changeAlpha = 0;
+
+        private void start() {
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 0.7f, 0.0f, 0.4f, 0.0f);
             valueAnimator.setInterpolator(new DecelerateInterpolator());
-            valueAnimator.setDuration(400);
+            valueAnimator.setDuration(sec * 100);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    float alpha= (float) animation.getAnimatedValue();
-                    changeAlpha=alpha;
+                    float alpha = (float) animation.getAnimatedValue();
+                    changeAlpha = alpha;
                 }
             });
             valueAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    handler.postDelayed(runnable,6000);
+                    handler.postDelayed(runnable, 6000);
                 }
             });
             valueAnimator.start();
         }
 
-        Handler handler=new Handler(new android.os.Handler.Callback() {
+        Handler handler = new Handler(new android.os.Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
 
                 return false;
             }
         });
-        Runnable runnable=new Runnable() {
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                isOver=true;
+                isOver = true;
             }
         };
     }
 
 
-    class RainBean implements Serializable{
+    class RainBean implements Serializable {
         Paint rainPaint;
-        float sx,sy,ex,ey;
-        int sec=0;
-        float rainDistance=0;
-        public RainBean (){
-            rainPaint=new Paint(p);
+        float sx, sy, ex, ey;
+        int sec = 0;
+        float rainDistance = 0;
+
+        public RainBean() {
+            rainPaint = new Paint(p);
             rainPaint.setColor(Color.WHITE);
-            rainPaint.setAlpha((int) (255f*0.5f));
-            rainPaint.setStrokeWidth(RandomUti.getInstance().getRandom().nextFloat()*3f+0.1f);
-            sx=RandomUti.getInstance().getRandom().nextFloat()*(2*w);//初始值
-            sy=-200;//初始值
-            sec=RandomUti.getInstance().getRandom().nextInt(3)+2;
-            rainDistance=RandomUti.getInstance().getRandom().nextFloat()*50f;
+            rainPaint.setAlpha((int) (255f * 0.5f));
+            rainPaint.setStrokeWidth(RandomUti.getInstance().getRandom().nextFloat() * 3f + 0.1f);
+            sx = RandomUti.getInstance().getRandom().nextFloat() * (2 * w);//初始值
+            sy = -200;//初始值
+            sec = RandomUti.getInstance().getRandom().nextInt(3) + 2;
+            rainDistance = RandomUti.getInstance().getRandom().nextFloat() * 50f;
 
             start();
         }
 
-        public void draw(Canvas canvas){
-            ex=sx-4;
-            ey=sy+rainDistance;
-            canvas.drawLine(sx,sy,ex,ey,rainPaint);
+        public void draw(Canvas canvas) {
+            ex = sx - 4;
+            ey = sy + rainDistance;
+            canvas.drawLine(sx, sy, ex, ey, rainPaint);
         }
 
-        boolean isOver=false;
-        private void start(){
-            ValueAnimator xchange=ValueAnimator.ofFloat(sx,-200);
-            xchange.setDuration(sec*1000);
+        boolean isOver = false;
+
+        private void start() {
+            ValueAnimator xchange = ValueAnimator.ofFloat(sx, -200);
+            xchange.setDuration(sec * 1000);
             xchange.setInterpolator(new LinearInterpolator());
             xchange.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    float changex= (float) animation.getAnimatedValue();
-                    sx=changex;
+                    float changex = (float) animation.getAnimatedValue();
+                    sx = changex;
                 }
             });
             xchange.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    isOver=true;
+                    isOver = true;
                 }
             });
             xchange.start();
 
-            ValueAnimator ychange=ValueAnimator.ofFloat(sy,h+200);
-            ychange.setDuration(sec*500);
+            ValueAnimator ychange = ValueAnimator.ofFloat(sy, h + 200);
+            ychange.setDuration(sec * 500);
             ychange.setInterpolator(new LinearInterpolator());
             ychange.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    float changey= (float) animation.getAnimatedValue();
-                    sy=changey;
+                    float changey = (float) animation.getAnimatedValue();
+                    sy = changey;
                 }
             });
             ychange.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    isOver=true;
+                    isOver = true;
                 }
             });
             ychange.start();
@@ -250,54 +269,59 @@ public class WeatherView extends View {
         }
     }
 
-    class CloudBean implements Serializable{
+    class CloudBean implements Serializable {
         Paint cloudPaint;
         Bitmap cloudBitmap;
         Matrix matrix;
-        float x=0;
-        float y=0;
-        int sec=0;
+        float x = 0;
+        float y = 0;
+        int sec = 0;
         float scx;
         float scy;
-        public CloudBean(Canvas canvasa){
-            cloudPaint=new Paint(p);
-            cloudBitmap= BitmapFactory.decodeResource(getResources(), R.mipmap.cloud);
-            cloudPaint.setAlpha((int) (255f*Math.random()));
-            matrix=new Matrix();
-            scx= (float) RandomUti.getInstance().getRandom().nextDouble()+0.5f;
-            scy= (float) (RandomUti.getInstance().getRandom().nextDouble()+0.5f);
-            matrix.preScale(scx,scy);
-            x=-cloudBitmap.getScaledWidth(canvasa);
-            y=RandomUti.getInstance().getRandom().nextFloat()*200-50;
-            sec=RandomUti.getInstance().getRandom().nextInt(100)+100;
 
-
+        public CloudBean(Canvas canvasa) {
+            cloudPaint = new Paint(p);
+            cloudBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.cloud2);
+            cloudPaint.setAlpha((int) (255f * Math.random()));
+            matrix = new Matrix();
+            scx = (float) RandomUti.getInstance().getRandom().nextDouble() + 0.5f;
+            scy = (float) (RandomUti.getInstance().getRandom().nextDouble());
+            matrix.preScale(scx, scy);
+            x = -cloudBitmap.getScaledWidth(canvasa);
+            x=resetX(cloudBitmap)==0?x:resetX(cloudBitmap);
+            y = RandomUti.getInstance().getRandom().nextFloat() * 200 - 50;
+            sec = RandomUti.getInstance().getRandom().nextInt(100) + 100;
             start();
         }
 
-
-        public void draw(Canvas canvas){
-            matrix.setTranslate(x,y);
-            canvas.drawBitmap(cloudBitmap,matrix,cloudPaint);
+        public float resetX(Bitmap cloudBitmap) {
+            return 0;
         }
 
-        boolean isOver=false;
-        private void start(){
-            ValueAnimator xchange=ValueAnimator.ofFloat(x,w);
+
+        public void draw(Canvas canvas) {
+            matrix.setTranslate(x, y);
+            canvas.drawBitmap(cloudBitmap, matrix, cloudPaint);
+        }
+
+        boolean isOver = false;
+
+        private void start() {
+            ValueAnimator xchange = ValueAnimator.ofFloat(x, w);
             xchange.setInterpolator(new LinearInterpolator());
-            xchange.setDuration(sec*1000);
+            xchange.setDuration(sec * 1000);
             xchange.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    isOver=true;
+                    isOver = true;
                 }
             });
             xchange.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    float changex= (float) animation.getAnimatedValue();
-                    x=changex;
+                    float changex = (float) animation.getAnimatedValue();
+                    x = changex;
                 }
             });
             xchange.start();
