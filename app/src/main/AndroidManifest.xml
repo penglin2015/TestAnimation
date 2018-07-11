@@ -32,7 +32,10 @@
         <activity android:name=".DynamicActivity" />
         <activity android:name=".TestRecyclerForPositionActivity" />
         <activity android:name=".TestKotlinActivity" />
-        <activity android:name=".TestViewPagerActivity"></activity>
+        <activity android:name=".TestViewPagerActivity" />
+        <activity android:name=".TestSlideMenuActivity" />
+        <activity android:name=".UtilSlideMenuActivity" />
+        <activity android:name=".BasinAnimationActivity"></activity>
     </application>
 
 </manifest>

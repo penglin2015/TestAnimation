@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.gotoTestViewPager,R.id.gotoTestKotlin,R.id.gotoTestRecycler,R.id.gotoDynamicBz, R.id.gotoTestCircleButton, R.id.gotoTestViewFlipper, R.id.gotoFlyBird, R.id.gotoTestFoucus, R.id.gotoMoveAnimation, R.id.gotoZhenTv, R.id.gotoBetweenAnimationTv, R.id.gotoPropertyAnimatiorTv, R.id.gotoMix, R.id.gotoBz, R.id.gotoBzAnimation})
+    @OnClick({R.id.gotoTestBasinAnimation,R.id.gotoTestUtilSlideMenu,R.id.gotoTestSlideMenu,R.id.gotoTestViewPager,R.id.gotoTestKotlin,R.id.gotoTestRecycler,R.id.gotoDynamicBz, R.id.gotoTestCircleButton, R.id.gotoTestViewFlipper, R.id.gotoFlyBird, R.id.gotoTestFoucus, R.id.gotoMoveAnimation, R.id.gotoZhenTv, R.id.gotoBetweenAnimationTv, R.id.gotoPropertyAnimatiorTv, R.id.gotoMix, R.id.gotoBz, R.id.gotoBzAnimation})
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.gotoZhenTv:
@@ -81,6 +81,18 @@ public class MainActivity extends AppCompatActivity {
             case R.id.gotoTestViewPager:
 
                 IntentUtil.startSiampleActivity(MainActivity.this, TestViewPagerActivity.class);
+                break;
+
+            case R.id.gotoTestSlideMenu:
+                IntentUtil.startSiampleActivity(MainActivity.this, TestSlideMenuActivity.class);
+                break;
+
+            case R.id.gotoTestUtilSlideMenu:
+                IntentUtil.startSiampleActivity(MainActivity.this, UtilSlideMenuActivity.class);
+                break;
+
+            case R.id.gotoTestBasinAnimation:
+                IntentUtil.startSiampleActivity(MainActivity.this, BasinAnimationActivity.class);
                 break;
         }
     }
