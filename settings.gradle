@@ -1,1 +1,1 @@
-include ':app',':prancelib'
+include ':app',':prancelib',':infinitecycleviewpager'

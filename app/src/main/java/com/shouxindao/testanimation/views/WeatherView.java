@@ -58,7 +58,7 @@ public class WeatherView extends View {
         p.setStrokeWidth(5);
         w = ScreenUtils.getScreenWidth(getContext());
         h = ScreenUtils.getScreenHeight(getContext());
-        cityBean=new CityBean();
+        cityBean = new CityBean();
 
     }
 
@@ -73,26 +73,36 @@ public class WeatherView extends View {
         postInvalidate();
     }
 
+    /**
+     * 绘制城市
+     *
+     * @param canvas
+     */
     private void drawCity(Canvas canvas) {
         cityBean.draw(canvas);
     }
 
-    int maxCloudCount = 8;
-    List<CloudBean> cloudBeans = new ArrayList<>();
+    int maxCloudCount = 8;//最大云数
+    List<CloudBean> cloudBeans = new ArrayList<>();//云集合
 
+    /**
+     * 绘制云
+     *
+     * @param canvas
+     */
     private void drawCloud(final Canvas canvas) {
         if (cloudBeans.size() == 0) {
             for (int i = 0; i < maxCloudCount; i++) {
                 final int finalI = i;
-                CloudBean cloudBean = new CloudBean(canvas){
+                CloudBean cloudBean = new CloudBean(canvas) {
                     @Override
                     public float resetX(Bitmap cloudBitmap) {
-                        return (float) w / (float) maxCloudCount* finalI;
+                        return -cloudBitmap.getScaledWidth(canvas) + (float) w / (float) maxCloudCount * (float) finalI;
                     }
                 };
                 cloudBeans.add(cloudBean);
             }
-        } else if(cloudBeans.size()<maxCloudCount){
+        } else if (cloudBeans.size() < maxCloudCount) {
             for (int i = 0; i < maxCloudCount - cloudBeans.size(); i++) {
                 cloudBeans.add(new CloudBean(canvas));
             }
@@ -109,9 +119,14 @@ public class WeatherView extends View {
         cloudBeans.removeAll(isMove);
     }
 
-    int maxRainCont = 100;
-    List<RainBean> rainBeans = new ArrayList<>();
+    int maxRainCont = 200;//保持多少雨数
+    List<RainBean> rainBeans = new ArrayList<>();//雨集合
 
+    /**
+     * 绘制雨
+     *
+     * @param canvas
+     */
     private void drawRain(Canvas canvas) {
         if (rainBeans.size() < maxRainCont) {
             for (int i = 0; i < maxRainCont - rainBeans.size(); i++) {
@@ -131,9 +146,15 @@ public class WeatherView extends View {
         rainBeans.removeAll(isMove);
     }
 
-    List<LightningBean> lightningBeans = new ArrayList<>();
-    int maxLightingCount = 1;
 
+    List<LightningBean> lightningBeans = new ArrayList<>();//闪电集合
+    int maxLightingCount = 1;//最大闪电次数
+
+    /**
+     * 绘制闪电
+     *
+     * @param canvas
+     */
     private void drawLightning(Canvas canvas) {
         if (lightningBeans.size() < maxLightingCount) {
             for (int i = 0; i < maxLightingCount - lightningBeans.size(); i++) {
@@ -151,6 +172,9 @@ public class WeatherView extends View {
         lightningBeans.removeAll(isMove);
     }
 
+    /**
+     * 闪电模型
+     */
     class LightningBean implements Serializable {
         Paint lightningPaint;
         boolean isOver = false;
@@ -173,9 +197,10 @@ public class WeatherView extends View {
         float changeAlpha = 0;
 
         private void start() {
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 0.7f, 0.0f, 0.4f, 0.0f);
+            float[]lightningChangeValue=getLightningValue();
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(lightningChangeValue);
             valueAnimator.setInterpolator(new DecelerateInterpolator());
-            valueAnimator.setDuration(sec * 100);
+            valueAnimator.setDuration(sec * 200);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -193,6 +218,27 @@ public class WeatherView extends View {
             valueAnimator.start();
         }
 
+        /**
+         * 生成闪电变化效果
+         * @return
+         */
+        private float[] getLightningValue() {
+//            0f 0.8f 0.0f 0.5f 0.0f 0.9f 0.0f
+            int changeNum= (int) (Math.random()*5+2);
+            if(changeNum%2==0){
+                changeNum+=1;
+            }
+            float values[]=new float[changeNum];
+            for(int i=0;i<changeNum;i++){
+                if(i%2!=0){
+                    values[i]= (float) (Math.random()*6f+4f)/10f;
+                }else{
+                    values[i]=0f;
+                }
+            }
+            return values;
+        }
+
         Handler handler = new Handler(new android.os.Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
@@ -208,7 +254,9 @@ public class WeatherView extends View {
         };
     }
 
-
+    /**
+     * 雨模型
+     */
     class RainBean implements Serializable {
         Paint rainPaint;
         float sx, sy, ex, ey;
@@ -218,8 +266,8 @@ public class WeatherView extends View {
         public RainBean() {
             rainPaint = new Paint(p);
             rainPaint.setColor(Color.WHITE);
-            rainPaint.setAlpha((int) (255f * 0.5f));
-            rainPaint.setStrokeWidth(RandomUti.getInstance().getRandom().nextFloat() * 3f + 0.1f);
+            rainPaint.setAlpha((int) (255f * 0.3f));
+            rainPaint.setStrokeWidth(RandomUti.getInstance().getRandom().nextFloat() * 4f + 0.5f);
             sx = RandomUti.getInstance().getRandom().nextFloat() * (2 * w);//初始值
             sy = -200;//初始值
             sec = RandomUti.getInstance().getRandom().nextInt(3) + 2;
@@ -278,6 +326,9 @@ public class WeatherView extends View {
         }
     }
 
+    /**
+     * 云模型
+     */
     class CloudBean implements Serializable {
         Paint cloudPaint;
         Bitmap cloudBitmap;
@@ -291,14 +342,14 @@ public class WeatherView extends View {
         public CloudBean(Canvas canvasa) {
             cloudPaint = new Paint(p);
             cloudBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.cloud2);
-            cloudPaint.setAlpha((int) (255f * Math.random()));
+            cloudPaint.setAlpha((int) (255f * (Math.random() + 0.1f)));
             matrix = new Matrix();
             scx = (float) RandomUti.getInstance().getRandom().nextDouble() + 0.5f;
             scy = (float) (RandomUti.getInstance().getRandom().nextDouble());
             matrix.preScale(scx, scy);
             x = -cloudBitmap.getScaledWidth(canvasa);
-            x=resetX(cloudBitmap)==0?x:resetX(cloudBitmap);
-            y = RandomUti.getInstance().getRandom().nextFloat() * 200 - 50;
+            x = resetX(cloudBitmap) == 0 ? x : resetX(cloudBitmap);
+            y = RandomUti.getInstance().getRandom().nextFloat() * 150 - 100;
             sec = RandomUti.getInstance().getRandom().nextInt(100) + 100;
             start();
         }
@@ -309,6 +360,9 @@ public class WeatherView extends View {
 
 
         public void draw(Canvas canvas) {
+            if (cloudBitmap.isRecycled() || cloudBitmap == null) {
+                return;
+            }
             matrix.setTranslate(x, y);
             canvas.drawBitmap(cloudBitmap, matrix, cloudPaint);
         }
@@ -324,6 +378,10 @@ public class WeatherView extends View {
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
                     isOver = true;
+                    if (!cloudBitmap.isRecycled()) {
+                        cloudBitmap.recycle();
+                        cloudBitmap = null;
+                    }
                 }
             });
             xchange.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -337,25 +395,29 @@ public class WeatherView extends View {
         }
     }
 
-
-    class CityBean implements Serializable{
+    /*
+    城市的模型
+     */
+    class CityBean implements Serializable {
         Paint cityPaint;
         Bitmap cityBitmap;
         Matrix matrix;
-        public CityBean(){
-            cityPaint=new Paint(p);
-            cityBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.city);
-            matrix=new Matrix();
-            float bw=cityBitmap.getWidth();
-            float sc=w/bw;
-            matrix.preScale(sc,sc);
-            cityBitmap=Bitmap.createBitmap(cityBitmap,0,0,cityBitmap.getWidth(),cityBitmap.getHeight(),matrix,false);
-            matrix.setTranslate(0,h-cityBitmap.getHeight());
+
+        public CityBean() {
+            cityPaint = new Paint(p);
+            cityPaint.setAlpha((int) (255f * 0.3f));
+            cityBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.city);
+            matrix = new Matrix();
+            float bw = cityBitmap.getWidth();
+            float sc = w / bw;
+            matrix.preScale(sc, sc);
+            cityBitmap = Bitmap.createBitmap(cityBitmap, 0, 0, cityBitmap.getWidth(), cityBitmap.getHeight(), matrix, false);
+            matrix.setTranslate(0, h - cityBitmap.getHeight());
 
         }
 
-        public void draw(Canvas canvas){
-            canvas.drawBitmap(cityBitmap,matrix,cityPaint);
+        public void draw(Canvas canvas) {
+            canvas.drawBitmap(cityBitmap, matrix, cityPaint);
         }
     }
 }
