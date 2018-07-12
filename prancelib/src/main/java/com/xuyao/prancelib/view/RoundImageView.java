@@ -70,6 +70,14 @@ public class RoundImageView extends AppCompatImageView {
         a.recycle();
     }
 
+    public void setCurrMode(int currMode) {
+        this.currMode = currMode;
+    }
+
+    public void setCurrRound(int currRound) {
+        this.currRound = currRound;
+    }
+
     private void initViews() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
     }

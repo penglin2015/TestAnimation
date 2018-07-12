@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.xuyao.prancelib.util.ImageUtil;
 import com.xuyao.prancelib.view.BothSideSmallerMiddleBigViewPager;
+import com.xuyao.prancelib.view.RoundImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,9 @@ public class TestViewPagerActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            ImageView imageView = new ImageView(context);
+            RoundImageView imageView = new RoundImageView(context);
+            imageView.setCurrMode(2);
+            imageView.setCurrRound(20);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             ImageUtil.glideSetImgToImgView(imageView, imgUrls.get(position % imgUrls.size()), R.drawable.icon_over);
             container.addView(imageView);
