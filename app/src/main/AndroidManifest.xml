@@ -36,7 +36,9 @@
         <activity android:name=".TestSlideMenuActivity" />
         <activity android:name=".UtilSlideMenuActivity" />
         <activity android:name=".BasinAnimationActivity" />
-        <activity android:name=".WeatherAnimationActivity"></activity>
+        <activity android:name=".WeatherAnimationActivity" />
+        <activity android:name=".CircleScaleActivity" />
+        <activity android:name=".WaterChangeActivity"></activity>
     </application>
 
 </manifest>

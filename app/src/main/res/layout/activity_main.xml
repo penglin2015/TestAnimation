@@ -135,6 +135,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="天气变化动画" />
+
+            <Button
+                android:id="@+id/gotoGreenEyes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="放松眼睛" />
+
+            <Button
+                android:id="@+id/gotoWaterChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="水流效仿" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

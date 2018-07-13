@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
             R.id.gotoMix,
             R.id.gotoBz,
             R.id.gotoBzAnimation,
-            R.id.gotoWeatherAnimation})
+            R.id.gotoWeatherAnimation,
+            R.id.gotoGreenEyes,
+            R.id.gotoWaterChange})
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.gotoZhenTv:
@@ -114,6 +116,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.gotoWeatherAnimation:
                 IntentUtil.startSiampleActivity(MainActivity.this, WeatherAnimationActivity.class);
+                break;
+
+            case R.id.gotoGreenEyes:
+                IntentUtil.startSiampleActivity(MainActivity.this, CircleScaleActivity.class);
+                break;
+
+            case R.id.gotoWaterChange:
+                IntentUtil.startSiampleActivity(MainActivity.this, WaterChangeActivity.class);
                 break;
 
         }
