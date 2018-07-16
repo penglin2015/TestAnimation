@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
             R.id.gotoBzAnimation,
             R.id.gotoWeatherAnimation,
             R.id.gotoGreenEyes,
-            R.id.gotoWaterChange})
+            R.id.gotoWaterChange,
+            R.id.gotoPaoPao,
+            R.id.gotoKuaiGame})
     public void onViewClicked(View v) {
         switch (v.getId()) {
             case R.id.gotoZhenTv:
@@ -124,6 +126,14 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.gotoWaterChange:
                 IntentUtil.startSiampleActivity(MainActivity.this, WaterChangeActivity.class);
+                break;
+            case R.id.gotoPaoPao:
+                IntentUtil.startSiampleActivity(MainActivity.this, PaoPaoActivity.class);
+                break;
+
+
+            case R.id.gotoKuaiGame:
+                IntentUtil.startSiampleActivity(MainActivity.this, KuaiActivity.class);
                 break;
 
         }

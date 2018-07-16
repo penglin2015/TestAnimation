@@ -143,10 +143,24 @@
                 android:text="放松眼睛" />
 
             <Button
-                android:id="@+id/gotoWaterChange"
+            android:id="@+id/gotoWaterChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水流效仿" />
+
+
+            <Button
+                android:id="@+id/gotoPaoPao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="水流效仿" />
+                android:text="泡泡上升" />
+
+
+            <Button
+                android:id="@+id/gotoKuaiGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消消方快" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

@@ -38,7 +38,10 @@
         <activity android:name=".BasinAnimationActivity" />
         <activity android:name=".WeatherAnimationActivity" />
         <activity android:name=".CircleScaleActivity" />
-        <activity android:name=".WaterChangeActivity"></activity>
+        <activity android:name=".WaterChangeActivity" />
+        <activity android:name=".PaoPaoActivity" />
+        <activity android:name=".KuaiActivity"
+            android:theme="@style/Full"/>
     </application>
 
 </manifest>

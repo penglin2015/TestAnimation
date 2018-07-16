@@ -99,7 +99,7 @@ public class WaterRunView extends View {
             this.k = k;
             blPaint=new Paint(p);
             blPaint.setColor(ColorUtil.randomColor());
-            sec= RandomUti.getInstance().getRandom().nextInt(5)+1;
+            sec= (long) (RandomUti.getInstance().getRandom().nextDouble()*5+1);
             changeAngle();
         }
 
