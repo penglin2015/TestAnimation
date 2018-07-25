@@ -511,6 +511,9 @@ public class KuaiView extends View {
                 }
                 if(isMoveList.size()!=0){
                     geItemBeanList.removeAll(isMoveList);
+                    for(GeItemBean mm:isMoveList){
+                        mm=null;
+                    }
                 }
             }
         }
@@ -739,33 +742,28 @@ public class KuaiView extends View {
         //下移后需要重新统计y轴上的X点
 
         TreeMap<Integer, List<GeItemBean>> resetMap = new TreeMap<>();
-        List<Integer> needRemoveKeyList = new ArrayList<>();
         Set<Integer> cpTjSet = yStatMapInXPointMap.keySet();
         for (Integer key : cpTjSet) {
             List<GeItemBean> cpTjList = yStatMapInXPointMap.get(key);
             if (cpTjList.size() > 0) {
-                GeItemBean item = cpTjList.get(0);
-                int reallyKey = item.getBqy();
-                if (reallyKey != key) {
-                    //说明不对应
-                    LogUtils.e("有没有不对应的key="+key);
-                    needRemoveKeyList.add(key);
-                    resetMap.put(reallyKey, cpTjList);
+                for(GeItemBean cg:cpTjList){
+                    if(cg.isRemove)
+                        continue;
+                    int reallyBqy=cg.getBqy();
+                    if(resetMap.containsKey(reallyBqy)){
+                        List<GeItemBean> geItemBeans=resetMap.get(reallyBqy);
+                            geItemBeans.add(cg);
+                    }else{
+                        List<GeItemBean> geItemBeans=new ArrayList<>();
+                        geItemBeans.add(cg);
+                        resetMap.put(reallyBqy,geItemBeans);
+                    }
                 }
-            } else {
-                //没有集合的统计
-                needRemoveKeyList.add(key);
             }
         }
-        LogUtils.e("总共原来的统计ykey大小="+yStatMapInXPointMap.size());
-        LogUtils.e("移除的无用key大小="+needRemoveKeyList.size());
-        for (int key : needRemoveKeyList) {
-            yStatMapInXPointMap.remove(key);
-        }
 
-        LogUtils.e("移除后的大小="+yStatMapInXPointMap.size());
+        yStatMapInXPointMap.clear();
         yStatMapInXPointMap.putAll(resetMap);
-        LogUtils.e("又加入新的key后的大小="+yStatMapInXPointMap.size());
 
         //统一移除统计里面的x轴对应的y点
         Set<Integer> xinty = xStatInYPointMap.keySet();
