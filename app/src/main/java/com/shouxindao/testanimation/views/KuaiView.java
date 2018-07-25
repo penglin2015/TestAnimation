@@ -70,10 +70,18 @@ public class KuaiView extends View {
         p.setStrokeWidth(5);
         w = ScreenUtils.getScreenWidth(getContext());
         h = ScreenUtils.getScreenHeight(getContext());
-        gamePanelHeight = h - 200f;
+        gamePanelHeight = h - 500f;
         gw = w / 20f;
         geBean = new GeBean();
         gePointF();
+    }
+
+    public float getGamePanelHeight() {
+        return gamePanelHeight;
+    }
+
+    public void setGamePanelHeight(float gamePanelHeight) {
+        this.gamePanelHeight = gamePanelHeight;
     }
 
     /**
@@ -195,8 +203,19 @@ public class KuaiView extends View {
             kuaiBeanList.add(new KuaiBean());
         }
         synchronized (kuaiBeanList) {
+            List<KuaiBean> moveList=new ArrayList<>();
             for (KuaiBean item : kuaiBeanList) {
+                if(item.isMove){
+                    moveList.add(item);
+                    continue;
+                }
                 item.draw(canvas);
+            }
+            if(moveList.size()>0){
+                kuaiBeanList.removeAll(moveList);
+                for(KuaiBean item:moveList){
+                    item=null;//指控
+                }
             }
         }
     }
@@ -208,6 +227,7 @@ public class KuaiView extends View {
             gePaint = new Paint(p);
             gePaint.setStrokeWidth(1f);
             gePaint.setColor(ColorUtil.randomColor());
+            gePaint.setAlpha((int) (255*0.5f));
         }
 
         void draw(Canvas canvas) {
@@ -495,6 +515,7 @@ public class KuaiView extends View {
         }
 
 
+        boolean isMove=false;//是否可以移除标致
         /**
          * 绘制所有格子
          *
@@ -502,6 +523,10 @@ public class KuaiView extends View {
          */
         void draw(Canvas canvas) {
             synchronized (geItemBeanList) {
+                if(!isMove&&geItemBeanList.size()==0){
+                    isMove=true;
+                    return;
+                }
                 List<GeItemBean> isMoveList = new ArrayList<>();//统计需要移除的item
                 for (GeItemBean geItemBean : geItemBeanList) {
                     if (geItemBean.isRemove) {
@@ -661,21 +686,21 @@ public class KuaiView extends View {
      */
     private void clearGg() {
         int myCount = (int) (w / gw);
-        List<Integer> mmyList = new ArrayList<>();
+        List<Integer> mmyList = new ArrayList<>();//统计需要改变的Y轴上X点
         Set<Integer> set = yStatMapInXPointMap.keySet();
         for (Integer key : set) {
             List<GeItemBean> geItemBeanList = yStatMapInXPointMap.get(key);
             if (geItemBeanList.size() >= myCount) {
                 //满员处理
                 for (GeItemBean ism : geItemBeanList) {
-                    ism.setRemove(true);
+                    ism.setRemove(true);//设置需要移除标记
                 }
                 geItemBeanList.clear();//清空y轴上的x统计
                 mmyList.add(key);
             }
         }
 
-        //统一做了下移操作
+        //统一做了下移操作//对需要处理的Y轴进行正序排序
         Collections.sort(mmyList, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
@@ -683,7 +708,7 @@ public class KuaiView extends View {
             }
         });
 
-        int mmySize = mmyList.size();//需
+        int mmySize = mmyList.size();//需要处理的y轴行数
         //需要统一做下移操作
         if (mmySize == 1 || mmySize == 4) {
             //只消除了1行或者4行的时候
@@ -740,14 +765,13 @@ public class KuaiView extends View {
         }
 
         //下移后需要重新统计y轴上的X点
-
         TreeMap<Integer, List<GeItemBean>> resetMap = new TreeMap<>();
         Set<Integer> cpTjSet = yStatMapInXPointMap.keySet();
         for (Integer key : cpTjSet) {
             List<GeItemBean> cpTjList = yStatMapInXPointMap.get(key);
             if (cpTjList.size() > 0) {
                 for(GeItemBean cg:cpTjList){
-                    if(cg.isRemove)
+                    if(cg.isRemove)//需要移除的点不做处理
                         continue;
                     int reallyBqy=cg.getBqy();
                     if(resetMap.containsKey(reallyBqy)){
@@ -803,7 +827,7 @@ public class KuaiView extends View {
             this.x = x;
             this.y = y;
             geItemPaint = new Paint(p);
-            geItemPaint.setStrokeWidth(gw);
+            geItemPaint.setStrokeWidth(gw*0.9f);
             geItemPaint.setColor(ColorUtil.randomColor());
             artPointF = pointFSparseArray.get(index);
 

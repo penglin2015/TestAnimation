@@ -11,4 +11,8 @@ public class ColorUtil {
         String n=Integer.toHexString(num);
         return Color.parseColor("#"+n);
     }
+
+    public static int paseColor(String x16color){
+       return Color.parseColor("#"+x16color);
+    }
 }
